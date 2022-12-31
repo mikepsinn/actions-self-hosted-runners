@@ -4,7 +4,7 @@ install:
 
 .PHONY: up
 up: install
-	VAGRANT_EXPERIMENTAL="disks" vagrant up
+	$env:VAGRANT_EXPERIMENTAL = 'disks'; vagrant up
 
 .PHONY: vagrant-validate
 vagrant-validate: install

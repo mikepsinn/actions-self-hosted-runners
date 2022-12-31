@@ -21,8 +21,8 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
   end
 
-  config.vm.provision :shell, path: "actions-runner.sh", run: 'always'
   config.vm.provision :root_user, type: "shell", path: "provision_root.sh"
+  config.vm.provision :shell, path: "actions-runner-install.sh"
   config.vm.provision :vagrant_user, type: "shell", privileged: false, path: "provision_nonroot.sh"
 
   config.vm.provision :vagrant_user_runner, type: "shell", privileged: false, inline: <<-SHELL
@@ -34,4 +34,5 @@ Vagrant.configure("2") do |config|
     # ./config.sh --url #{ENV['GHA_RUNNER_URL']} --token #{ENV['GHA_RUNNER_TOKEN']}
     # nohup ./run.sh &
   SHELL
+  config.vm.provision :shell, path: "actions-runner.sh", run: 'always'
 end
