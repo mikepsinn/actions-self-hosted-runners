@@ -3,9 +3,14 @@
 
 Dotenv.load
 
+VB_DISK_SIZE = ENV["VB_DISK_SIZE"] || '30GB'
+VB_CPUS = ENV["VB_CPUS"] || '4'
+VB_MEMORY = ENV["VB_MEMORY"] || '8192'
+GHA_RUNNER_VERSION = ENV["GHA_RUNNER_VERSION"] || '2.299.1'
+
 Vagrant.configure("2") do |config|
   config.vm.box = "generic/ubuntu2004"
-  config.vm.disk :disk, size: "#{ENV['VB_DISK_SIZE']}", primary: true
+  config.vm.disk :disk, size: "#{VB_DISK_SIZE}", primary: true
   config.vm.box_check_update = true
   config.vm.host_name = "actions-runner"
 
@@ -14,8 +19,8 @@ Vagrant.configure("2") do |config|
     vb.gui = false
 
     # Customize the amount of cpus and memory on the VM:
-    vb.cpus = "#{ENV['VB_CPUS']}".to_i
-    vb.memory = "#{ENV['VB_MEMORY']}".to_i
+    vb.cpus = "#{VB_CPUS}".to_i
+    vb.memory = "#{VB_MEMORY}".to_i
 
     # Fix https://www.virtualbox.org/ticket/15705
     vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
@@ -28,7 +33,6 @@ Vagrant.configure("2") do |config|
   config.vm.provision :vagrant_user_runner, type: "shell", privileged: false, inline: <<-SHELL
     # Install actions/runner
     mkdir ~/actions-runner && cd ~/actions-runner
-    GHA_RUNNER_VERSION=#{ENV['GHA_RUNNER_VERSION']}
     curl -so actions-runner-linux-x64-${GHA_RUNNER_VERSION}.tar.gz -L https://github.com/actions/runner/releases/download/v${GHA_RUNNER_VERSION}/actions-runner-linux-x64-${GHA_RUNNER_VERSION}.tar.gz
     tar xzf ./actions-runner-linux-x64-${GHA_RUNNER_VERSION}.tar.gz
     # ./config.sh --url #{ENV['GHA_RUNNER_URL']} --token #{ENV['GHA_RUNNER_TOKEN']}
