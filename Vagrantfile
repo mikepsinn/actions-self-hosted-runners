@@ -26,17 +26,11 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
   end
 
-  config.vm.provision :root_user, type: "shell", path: "provision_root.sh"
-  config.vm.provision :shell, path: "actions-runner-install.sh"
-  config.vm.provision :vagrant_user, type: "shell", privileged: false, path: "provision_nonroot.sh"
+    config.vm.provision :root_user, type: "shell", path: "provision_root.sh"
+    config.vm.provision :vagrant_user, type: "shell", privileged: false, path: "provision_nonroot.sh"
+    config.vm.provision :vagrant_user_runner_ionic, type: "shell", privileged: false, path: "actions-runner-install-ionic.sh"
+    config.vm.provision :vagrant_user_runner_api, type: "shell", privileged: false, path: "actions-runner-install-api.sh"
 
-  config.vm.provision :vagrant_user_runner, type: "shell", privileged: false, inline: <<-SHELL
-    # Install actions/runner
-    mkdir ~/actions-runner && cd ~/actions-runner
-    curl -so actions-runner-linux-x64-${GHA_RUNNER_VERSION}.tar.gz -L https://github.com/actions/runner/releases/download/v${GHA_RUNNER_VERSION}/actions-runner-linux-x64-${GHA_RUNNER_VERSION}.tar.gz
-    tar xzf ./actions-runner-linux-x64-${GHA_RUNNER_VERSION}.tar.gz
-    # ./config.sh --url #{ENV['GHA_RUNNER_URL']} --token #{ENV['GHA_RUNNER_TOKEN']}
-    # nohup ./run.sh &
-  SHELL
-  config.vm.provision :shell, path: "actions-runner.sh", run: 'always'
+    config.vm.provision :shell, path: "actions-runner-ionic.sh", run: 'always'
+    config.vm.provision :shell, path: "actions-runner-api.sh", run: 'always'
 end
