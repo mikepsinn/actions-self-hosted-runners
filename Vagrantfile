@@ -9,10 +9,11 @@ VB_MEMORY = ENV["VB_MEMORY"] || '8192'
 GHA_RUNNER_VERSION = ENV["GHA_RUNNER_VERSION"] || '2.299.1'
 
 Vagrant.configure("2") do |config|
+  # config.vm.network "forwarded_port", guest: 7777, host: 7777, protocol: "tcp"
   config.vm.box = "generic/ubuntu2004"
   config.vm.disk :disk, size: "#{VB_DISK_SIZE}", primary: true
   config.vm.box_check_update = true
-  config.vm.host_name = "actions-runner"
+  config.vm.host_name = "infinity-actions-runner"
 
   config.vm.provider "virtualbox" do |vb|
     # Display the VirtualBox GUI when booting the machine
@@ -31,6 +32,5 @@ Vagrant.configure("2") do |config|
     config.vm.provision :vagrant_user_runner_ionic, type: "shell", privileged: false, path: "actions-runner-install-ionic.sh"
     config.vm.provision :vagrant_user_runner_api, type: "shell", privileged: false, path: "actions-runner-install-api.sh"
 
-    config.vm.provision :shell, path: "actions-runner-ionic.sh", run: 'always'
-    config.vm.provision :shell, path: "actions-runner-api.sh", run: 'always'
+    config.vm.provision :shell, path: "actions-runners.sh", run: 'always'
 end
