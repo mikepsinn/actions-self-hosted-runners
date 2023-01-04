@@ -31,5 +31,5 @@ Vagrant.configure("2") do |config|
     config.vm.provision :vagrant_user, type: "shell", privileged: false, path: "provision_nonroot.sh"
     config.vm.provision :vagrant_user_runner_install, type: "shell", privileged: false, path: "actions-runner-install.sh"
 
-    #config.vm.provision :shell, path: "actions-runners.sh", run: 'always'
+    config.vm.provision :shell, path: "actions-runners.sh", run: 'always'
 end
