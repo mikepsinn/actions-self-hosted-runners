@@ -20,3 +20,10 @@ grep CRON /var/log/syslog
 
 echo "get command from https://github.com/mikepsinn/cd-ionic/settings/actions/runners/new?arch=x64&os=linux"
 echo "get command from https://github.com/mikepsinn/curedao-api/settings/actions/runners/new?arch=x64&os=linux"
+
+  sudo apt install ntpdate
+  sudo ntpdate ntp.ubuntu.com
+  sudo timedatectl set-ntp on
+  sudo service ntp stop
+  sudo ntpd -gq
+  sudo service ntp start

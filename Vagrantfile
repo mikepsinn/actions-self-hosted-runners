@@ -4,8 +4,8 @@
 Dotenv.load
 
 VB_DISK_SIZE = ENV["VB_DISK_SIZE"] || '30GB'
-VB_CPUS = ENV["VB_CPUS"] || '4'
-VB_MEMORY = ENV["VB_MEMORY"] || '4000'
+VB_CPUS = ENV["VB_CPUS"] || '3'
+VB_MEMORY = ENV["VB_MEMORY"] || '3000'
 GHA_RUNNER_VERSION = ENV["GHA_RUNNER_VERSION"] || '2.299.1'
 
 Vagrant.configure("2") do |config|

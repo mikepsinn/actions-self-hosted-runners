@@ -1,6 +1,7 @@
 .PHONY: install
 install:
 	vagrant plugin install dotenv
+	vagrant plugin install vagrant-vbguest
 
 .PHONY: up
 up: install
