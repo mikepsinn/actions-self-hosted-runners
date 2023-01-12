@@ -9,7 +9,8 @@ VB_MEMORY = ENV["VB_MEMORY"] || '3000'
 GHA_RUNNER_VERSION = ENV["GHA_RUNNER_VERSION"] || '2.299.1'
 
 Vagrant.configure("2") do |config|
-  # config.vm.network "forwarded_port", guest: 7777, host: 7777, protocol: "tcp"
+  config.vm.network "forwarded_port", guest: 7777, host: 7777, protocol: "tcp"
+  config.vm.network "forwarded_port", guest: 22, host: 2222, protocol: "tcp"
   config.vm.box = "generic/ubuntu2004"
   config.vm.disk :disk, size: "#{VB_DISK_SIZE}", primary: true
   config.vm.box_check_update = true

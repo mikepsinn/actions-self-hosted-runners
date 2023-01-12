@@ -1,0 +1,1 @@
+vagrant ssh -c 'source /home/vagrant/actions-runners/cd-ionic/run.sh'
