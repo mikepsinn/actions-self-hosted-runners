@@ -26,6 +26,8 @@ Vagrant.configure("2") do |config|
 
     # Fix https://www.virtualbox.org/ticket/15705
     vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
+    vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000 ]
+
   end
 
     config.vm.provision :root_user, type: "shell", path: "provision_root.sh"

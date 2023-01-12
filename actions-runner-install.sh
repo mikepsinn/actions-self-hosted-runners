@@ -27,3 +27,6 @@ echo "get command from https://github.com/mikepsinn/curedao-api/settings/actions
   sudo service ntp stop
   sudo ntpd -gq
   sudo service ntp start
+
+  sudo ntpdate ntp.ubuntu.com
+
