@@ -29,3 +29,7 @@ VB_CPUS = '4'
 VB_MEMORY = '8192'
 VB_DISK_SIZE = '30GB'
 ```
+
+## AAPanel
+
+AAPanel is a free web hosting control panel for Linux is accessible at http://localhost:7777/login
