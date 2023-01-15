@@ -14,8 +14,12 @@ Vagrant.configure("2") do |config|
   config.vm.box = "generic/ubuntu2004"
   config.vm.disk :disk, size: "#{VB_DISK_SIZE}", primary: true
   config.vm.box_check_update = true
-  # config.vm.host_name = "actions-runner"
-  config.vm.host_name = ENV['COMPUTERNAME']
+  # config.vm.host_name = "vagrant-actions-runner"
+  if Vagrant.has_environment?("computername")
+    config.vm.hostname = ENV['COMPUTERNAME'] + "-vagrant-actions-runner"
+  elsif Vagrant.has_environment?("hostname")
+    config.vm.hostname = ENV['HOSTNAME'] + "-vagrant-actions-runner"
+  end
 
   config.vm.provider "virtualbox" do |vb|
     # Display the VirtualBox GUI when booting the machine
