@@ -15,10 +15,12 @@ Vagrant.configure("2") do |config|
   config.vm.disk :disk, size: "#{VB_DISK_SIZE}", primary: true
   config.vm.box_check_update = true
   # config.vm.host_name = "vagrant-actions-runner"
-  if Vagrant.has_environment?("computername")
+  if ENV['COMPUTERNAME']
     config.vm.hostname = ENV['COMPUTERNAME'] + "-vagrant-actions-runner"
-  elsif Vagrant.has_environment?("hostname")
+  elsif ENV['HOSTNAME']
     config.vm.hostname = ENV['HOSTNAME'] + "-vagrant-actions-runner"
+  else 
+    throw "Unable to set hostname"
   end
 
   config.vm.provider "virtualbox" do |vb|
