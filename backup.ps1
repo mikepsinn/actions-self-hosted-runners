@@ -2,10 +2,10 @@
 
 # Define the name of the Vagrant box to be backed up
 #$boxName = "actions-runner"
-$boxName = "actions-self-hosted-runners_default_1672630220807_58527"
+$boxName = "actions-self-hosted-runners_default_1672329630299_95779"
 
 # Define the location to save the backup file
-$backupLocation = "C:\Vagrant_Backups\"
+$backupLocation = "D:\Vagrant_Backups\"
 
 # Check if the backup location exists, if not create it
 if (!(Test-Path $backupLocation)) {
