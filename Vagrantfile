@@ -37,7 +37,7 @@ Vagrant.configure("2") do |config|
 
     config.vm.provision :root_user, type: "shell", path: "provision_root.sh"
     config.vm.provision :vagrant_user, type: "shell", privileged: false, path: "provision_nonroot.sh"
-    config.vm.provision :vagrant_user_runner_install, type: "shell", privileged: false, path: "actions-runner-install.sh"
+    #config.vm.provision :vagrant_user_runner_install, type: "shell", privileged: false, path: "actions-runner-install.sh"
 
     #config.vm.provision type: "inline", run: 'always', inline: 'sudo chown -R vagrant:vagrant /home/vagrant/actions-runner'
     #config.vm.provision "shell", path: "actions-runners.sh"
