@@ -31,7 +31,8 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
     vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000 ]
 
-    config.vm.synced_folder ".", "/vagrant", disabled: false
+    # I think this synced folder might cause problems
+    #config.vm.synced_folder ".", "/vagrant", disabled: false
 
   end
 
