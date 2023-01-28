@@ -1,4 +1,6 @@
-FROM curedao/php-8.1-apache-buster-xdebug-opcache-composer-pgsql:latest
+FROM ubuntu:18.04
+
+# ACTIONS RUNNER
 
 ENV RUNNER_VERSION=2.263.0
 
