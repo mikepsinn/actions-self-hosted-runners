@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -eEuo pipefail
 
-NAME="cloud-run-${NAME:-$(hostname)}"
+current_time=$(date +"%Y%m%d%H%M%S" | tr -d ': ')
+NAME="cloud-run-${NAME:-$current_time}"
 AUTH_TOKEN=$(curl -s -X POST -H "authorization: token ${PAT_TOKEN}" "https://api.github.com/repos/${OWNER}/${REPO}/actions/runners/registration-token" | jq -r .token)
 
 cleanup() {
