@@ -16,6 +16,10 @@ cleanup() {
   --unattended \
   --work _work
 
-./runsvc.sh
+./run.sh
+#./svc.sh install
+#./svc.sh start
+#./svc.sh status
+
 
 cleanup
