@@ -12,7 +12,7 @@ HOSTNAME = ENV["HOSTNAME"] || ENV['COMPUTERNAME'] || 'vagrant'
 Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 7777, host: 7777, protocol: "tcp"
   config.vm.network "forwarded_port", guest: 22, host: 2222, protocol: "tcp"
-  config.vm.network "forwarded_port", guest: 80, host: 80, protocol: "tcp"
+  config.vm.network "forwarded_port", guest: 80, host: 801, protocol: "tcp"
   config.vm.box = "generic/ubuntu2004"
   config.vm.disk :disk, size: "#{VB_DISK_SIZE}", primary: true
   config.vm.box_check_update = true
