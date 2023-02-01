@@ -22,11 +22,11 @@ set -x
 ./config.sh \
   --url "https://github.com/${OWNER}/${REPO}" \
   --token "${AUTH_TOKEN}" \
-  --name "${NAME}" \
+  --name $(hostname) \
   --unattended \
   --work _work \
   --ephemeral \
-  --labels cypress
+  --labels cypress,fast,medium
 
 #echo "Installing actions runner service..."
 #./svc.sh install
