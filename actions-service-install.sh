@@ -4,6 +4,9 @@
 set -eu -o pipefail # -x: is for debugging
 set -x
 
+sudo apt-get update
+sudo apt-get install -y jq
+
 sudo usermod -aG docker $USER
 echo "You'll probably need to reboot for the docker group to take effect."
 
@@ -17,8 +20,8 @@ fi
 install() {
   local repo=$1
   local folder=/home/$USER/actions-runners/$repo
-  mkdir "/home/$USER/actions-runners/"|| true
-  mkdir "$folder"
+  mkdir "/home/$USER/actions-runners/" || true
+  mkdir "$folder" || true
   cd "$folder" || exit 1
   curl -o actions-runner-linux-x64-2.299.1.tar.gz -L https://github.com/actions/runner/releases/download/v2.299.1/actions-runner-linux-x64-2.299.1.tar.gz || true
   tar xzf ./actions-runner-linux-x64-2.299.1.tar.gz || true
