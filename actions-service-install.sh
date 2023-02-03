@@ -41,8 +41,8 @@ install() {
     --name "$NAME" \
     --unattended \
     --work _work \
-    --ephemeral \
     --labels cypress,fast,medium
+    #--ephemeral \
 
   echo "Installing actions runner service..."
   sudo ./svc.sh install
